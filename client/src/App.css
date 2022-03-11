@@ -115,6 +115,7 @@ body
   border: 0;
   outline: 0;
   text-align: left;
+  margin-bottom: 3px
 }
 
 .showDataBtn
@@ -200,7 +201,22 @@ body
      display: contents;
    }
 
+   .inforWindow
+   {
+     font-family: 'Jua', sans-serif;
+   }
+
+   .btnShow
+   {
+     font-family: 'Jua', sans-serif;
+     color: blue;
+     background-color: #FFF;
+     border: 0;
+     outline: 0;
+   }
+
    .mapView
    {
+     margin-top: 40px;
      text-align: center;
    }

@@ -6,9 +6,9 @@ import Locate from "./Locate";
 import "@reach/combobox/styles.css";
 import "../App.css"
 import title_logo from '../image/title_logo.png'
+import light from '../image/light.png'
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 import TodoModal from './TodoModal';
-
 
 const Map = () => {
   
@@ -35,6 +35,7 @@ const Map = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries
   });
+  const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [searchPlace, setSearchPlace] = useState([]);
@@ -42,18 +43,6 @@ const Map = () => {
   const [resultData, setResultData] = useState("");
   const [count, setCount] = useState()
   const [isShow, setIsShow] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  // const [ismodal, setIsModal] = useState(false);
- function openModal(){
-   console.log("모달표시")
-   setShowModal(true)
-   console.log(showModal)
- }
- function closeModal(){
-   console.log("모달끄기")
-   setShowModal(false)
- }
-
 
   const showMarker = useCallback(() => {
     setMarkers(current => [
@@ -82,20 +71,26 @@ const Map = () => {
   useEffect(()=>{
 
   },[count])
-  
-  
+  function openModal(){
+    console.log("모달표시")
+    setShowModal(true)
+    console.log(showModal)
+  }
+  function closeModal(){
+    console.log("모달끄기")
+    setShowModal(false)
+  }
+ 
+
   if (loadError) return "Error Loading maps";
   if (!isLoaded) return "Loading Maps";
 
   return (
     <>
     <div>
-    
       <br />
       <h3 className='title'>ㅤ<img onClick={openModal} src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>브랜드를 찾아줘</h3>
       {showModal ? <TodoModal openModal={openModal} closeModal={closeModal}></TodoModal> : null}
-      
-
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue} setCount={setCount} setIsShow={setIsShow}></Predict_img>
       <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData} isShow={isShow} setIsShow={setIsShow}/>
@@ -147,13 +142,13 @@ const Map = () => {
                 
               }}
             >
-              <div>
-                <h2>정보</h2>
-                <p>{resultData}</p>
+              <div className='inforWindow'>
+              <h6><img style={{width:"17px", height:"17px", marginRight:"4px",marginTop : "-4px" }} src={light}/>알림</h6>
+              <p>"<span style={{color:"red"}}>{resultValue}</span>" 브랜드를<br/> 검색한 횟수는 <span style={{color:"red"}}>{count}</span> 입니다!</p>
                 <a href={"https://www.google.com/maps/search/"+resultData}>
-                  <button>정보 보기</button>
+                  <button className='btnShow'>정보 보기</button>
                 </a>
-                <p>count: {count}</p>
+                
                 {/* <button onClick={findStreet}>길찾기</button> */}
                 
               </div>
@@ -166,8 +161,3 @@ const Map = () => {
   )
 }
 export default Map
-
-
-
-
-
