@@ -38,6 +38,7 @@ const Map = () => {
   const [searchPlace, setSearchPlace] = useState([]);
   const [resultValue, setResultValue] = useState({});
   const [resultData, setResultData] = useState("");
+  const [count, setCount] = useState()
 
   const showMarker = useCallback(() => {
     setMarkers(current => [
@@ -62,12 +63,11 @@ const Map = () => {
   useEffect(() => {
     showMarker()
   }, [])
+  
+  // useEffect(()=>{
+  // },[count])
 
-  function findStreet(){
-    window.location.href("https://www.naver.com/")
-    console.log("gg")
 
-  }
   if (loadError) return "Error Loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -79,7 +79,7 @@ const Map = () => {
 
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue}></Predict_img>
-      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData}/>
+      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData} setCount={setCount}/>
       </div>
       
       
@@ -107,6 +107,17 @@ const Map = () => {
                 onClick={() => {
                   setSelected(place)
                   panTo(place)
+                  fetch("http://localhost:5001/database")
+                  .then((res)=>res.json())
+                  .then(data=>{
+                    for(var i=0; i<data.length; i++){
+                      if(resultValue===data[i].name){
+                        console.log(data[i].count)
+                        setCount(data[i].count)
+                        console.log(count)
+                      }
+                    }
+                  })
                 }}
               />
             ))}
@@ -114,6 +125,7 @@ const Map = () => {
               onCloseClick={() => {
                 setSelected(null);
                 panTo(place)
+                
               }}
             >
               <div>
@@ -122,6 +134,7 @@ const Map = () => {
                 <a href={"https://www.google.com/maps/search/"+resultData}>
                   <button>정보 보기</button>
                 </a>
+                <p>count: {count}</p>
                 {/* <button onClick={findStreet}>길찾기</button> */}
                 
               </div>

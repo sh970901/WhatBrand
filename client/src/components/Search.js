@@ -7,7 +7,7 @@ import Data from './Data';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResultData}) => {
+const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResultData, setCount}) => {
     const [myLat, setMyLat] = useState("");
     const [myLng, setMyLng] = useState("");
     useEffect(()=>{
@@ -57,7 +57,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 method: 'PUT',
                 body: JSON.stringify(data),
                 headers: {'Content-Type': 'application/json'}
-                
+
             })
             
         }
@@ -75,7 +75,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 {/* <input className="inputBox1"
                     type="text" placeholder="Enter an address" onChange={handleLocate} value={value}
                 ></input> */}
-                 <input className="inputBox1"
+                 <input className="resultInputBox"
                     type="text" placeholder="Enter an address" onChange={handleLocate} value={value}
                 ></input>
                 <br />
@@ -87,7 +87,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 ></input><br/>
                 <button onClick={showLocate}>위치보기</button> */}
             </div>
-            <button className='btn2' onClick={showData}>관련 데이터 보기</button>
+            <button className='showDataBtn' onClick={showData}>관련 데이터 보기</button>
                     {status === "OK" &&
                     data.map(({ description }) => {
                         return(<Data key={description} value={description} panTo={panTo} getPlace={getPlace} getSearchPlace={getSearchPlace} setResultData={setResultData}/>)
