@@ -57,6 +57,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 method: 'PUT',
                 body: JSON.stringify(data),
                 headers: {'Content-Type': 'application/json'}
+                
             })
             
         }

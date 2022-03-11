@@ -42,7 +42,6 @@ app.get('/database', (req, res) => {
    
 })
 app.put('/database:data', (req,res)=>{
-    console.log(req.params.data)
     let sql = 'UPDATE whatBrand SET count=count+1 WHERE name=?';
     let name = req.params.data
     connection.query(sql,name, (err,rows,fields)=>{
