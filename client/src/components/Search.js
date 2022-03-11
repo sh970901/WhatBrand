@@ -7,9 +7,10 @@ import Data from './Data';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResultData, setCount}) => {
+const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResultData, isShow, setIsShow}) => {
     const [myLat, setMyLat] = useState("");
     const [myLng, setMyLng] = useState("");
+    
     useEffect(()=>{
        showData(); 
     },[])
@@ -47,6 +48,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 }
             )
             setValue(resultValue)
+            setIsShow(true)
 
             
             const url=`http://localhost:5001/database${resultValue}`
@@ -87,12 +89,16 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
                 ></input><br/>
                 <button onClick={showLocate}>위치보기</button> */}
             </div>
-            <button className='showDataBtn' onClick={showData}>관련 데이터 보기</button>
-                    {status === "OK" &&
+            <button onClick={()=>console.log(resultValue)}>확인</button>
+
+            {resultValue===0 || resultValue===1 ? null : <><button className='showDataBtn' onClick={showData}>관련 데이터 보기</button>
+                    
+                    {isShow && status === "OK" &&
                     data.map(({ description }) => {
                         return(<Data key={description} value={description} panTo={panTo} getPlace={getPlace} getSearchPlace={getSearchPlace} setResultData={setResultData}/>)
                     }    
-                )}
+                )}</>}
+            
         </>
     )
 }

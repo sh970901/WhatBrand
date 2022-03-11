@@ -12,7 +12,7 @@ export default function Teachable_img(props) {
   const [imageSrc, setImageSrc] = useState('');
   
   useEffect(() => {
-    console.log(result);
+    props.setCount()
     props.setResultValue(result)
   }, [result]);
 
@@ -61,7 +61,7 @@ export default function Teachable_img(props) {
       }
     }
 
-    var classPrediction = "사진 속 랜드마크 위치는 " + prediction[maxIndex].className + " 입니다!"
+    var classPrediction = "사진 속 브랜드는 " + prediction[maxIndex].className + " 입니다!"
     labelContainer.innerHTML = classPrediction;
 
     const ChangeResult = (e) => {
@@ -73,6 +73,7 @@ export default function Teachable_img(props) {
   }
 
   const start = () => {
+    props.setIsShow(false)
     document.getElementById("label-container").style.display = "none";
   }
 

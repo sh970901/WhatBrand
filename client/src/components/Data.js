@@ -18,7 +18,7 @@ const Data = (props) => {
     return (
         <>
             {/* <div onClick={goLoate}>{props.value}</div> */}<br/>
-            <button onClick={goLocate}>{props.value}</button>
+            <button className="resultList" onClick={goLocate}>{props.value}</button>
 
         </>
 

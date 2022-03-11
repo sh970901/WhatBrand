@@ -39,6 +39,7 @@ const Map = () => {
   const [resultValue, setResultValue] = useState({});
   const [resultData, setResultData] = useState("");
   const [count, setCount] = useState()
+  const [isShow, setIsShow] = useState(false);
 
   const showMarker = useCallback(() => {
     setMarkers(current => [
@@ -64,8 +65,9 @@ const Map = () => {
     showMarker()
   }, [])
   
-  // useEffect(()=>{
-  // },[count])
+  useEffect(()=>{
+
+  },[count])
 
 
   if (loadError) return "Error Loading maps";
@@ -75,11 +77,11 @@ const Map = () => {
     <>
     <div>
       <br />
-      <h3 className='title'><img src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>사진으로 위치찾기</h3>
+      <h3 className='title'>ㅤ<img src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>브랜드를 찾아줘</h3>
 
       <div className='btn_group'>
-      <Predict_img setResultValue={setResultValue}></Predict_img>
-      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData} setCount={setCount}/>
+      <Predict_img setResultValue={setResultValue} setCount={setCount} setIsShow={setIsShow}></Predict_img>
+      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData} isShow={isShow} setIsShow={setIsShow}/>
       </div>
       
       
