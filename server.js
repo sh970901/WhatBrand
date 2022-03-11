@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/database', (req, res) => {
     try {
-        connection.query('SELECT * FROM practice ', function (err, rows, fields) {
+        connection.query('SELECT * FROM whatBrand', function (err, rows, fields) {
             res.header("Access-Control-Allow-Origin", "*");
             res.send(rows)
         })
@@ -40,6 +40,10 @@ app.get('/database', (req, res) => {
         console.log(error)
     }
    
+})
+app.put('/database:data', (req,res)=>{
+    console.log(req.params.data)
+    let sql = 'UPDATE '
 })
 
 
