@@ -3,7 +3,7 @@ import * as tmImage from '@teachablemachine/image'
 import "../App.css"
 
 export default function Teachable_img(props) {
-  const URL = "https://teachablemachine.withgoogle.com/models/WHik95_Bw/" // 첨성대, 남대문  Test 분류
+  const URL = "https://teachablemachine.withgoogle.com/models/_SOVOi3Dr/" 
   let model;
   let labelContainer;
   let maxPredictions;

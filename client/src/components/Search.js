@@ -4,21 +4,29 @@ import Geocode from "react-geocode";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import "../App.css"
 import Data from './Data';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue }) => {
+const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResultData}) => {
+    const [myLat, setMyLat] = useState("");
+    const [myLng, setMyLng] = useState("");
+    useEffect(()=>{
+       showData(); 
+    },[])
 
     const { ready, value, suggestions: { status, data },
         setValue,
         clearSuggestions,
     } = usePlacesAutocomplete({
         requestOptions: {
-            location: { lat: () => 43.653225, lng: () => -79.383186 },
-            radius: 400 * 1000,
+            location: { lat: () => myLat, lng: () => myLng },
+            radius: 0.01* 0.01,
         },
     });
     Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-    Geocode.setLanguage('en')
-    Geocode.setRegion('es')
+    // Geocode.setLanguage('en')
+    // Geocode.setRegion('es')
+    Geocode.setRegion('kor')
     Geocode.enableDebug()
 
     function showData() {
@@ -29,8 +37,28 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue }) => {
             alert("사진을 업로드 해야합니다.")
         }
         else{
+            navigator.geolocation.getCurrentPosition(
+                (position)=>{
+                    const myLat = position.coords.latitude
+                    const myLng = position.coords.longitude
+                    setMyLat(myLat)
+                    setMyLng(myLng)
+                    
+                }
+            )
             setValue(resultValue)
-            console.log(data[0])
+
+            
+            const url=`http://localhost:5001/database${resultValue}`
+            const data = {
+                data: resultValue
+            }
+            fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {'Content-Type': 'application/json'}
+            })
+            
         }
 
     }
@@ -61,7 +89,7 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue }) => {
             <button className='btn2' onClick={showData}>관련 데이터 보기</button>
                     {status === "OK" &&
                     data.map(({ description }) => {
-                        return(<Data key={description} value={description} panTo={panTo} getPlace={getPlace} getSearchPlace={getSearchPlace}/>)
+                        return(<Data key={description} value={description} panTo={panTo} getPlace={getPlace} getSearchPlace={getSearchPlace} setResultData={setResultData}/>)
                     }    
                 )}
         </>

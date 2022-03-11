@@ -9,7 +9,9 @@ import title_logo from '../image/title_logo.png'
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 
 const Map = () => {
+  
   const libraries = ["places, drawing,geometry, localContext , visualization "];
+  
   const options = {
     // style: mapStyles,
     disableDefaultUI: true,
@@ -35,7 +37,7 @@ const Map = () => {
   const [selected, setSelected] = useState(null);
   const [searchPlace, setSearchPlace] = useState([]);
   const [resultValue, setResultValue] = useState({});
-  
+  const [resultData, setResultData] = useState("");
 
   const showMarker = useCallback(() => {
     setMarkers(current => [
@@ -61,6 +63,11 @@ const Map = () => {
     showMarker()
   }, [])
 
+  function findStreet(){
+    window.location.href("https://www.naver.com/")
+    console.log("gg")
+
+  }
   if (loadError) return "Error Loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -72,7 +79,7 @@ const Map = () => {
 
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue}></Predict_img>
-      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} />
+      <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData}/>
       </div>
       
       
@@ -93,7 +100,7 @@ const Map = () => {
                 position={{ lat: place.lat, lng: place.lng }}
                 icon={{
                   url: "/marker.svg",
-                  scaledSize: new window.google.maps.Size(30, 30),
+                  scaledSize: new window.google.maps.Size(40, 40),
                   origin: new window.google.maps.Point(0, 0),
                   anchor: new window.google.maps.Point(15, 15)
                 }}
@@ -111,12 +118,12 @@ const Map = () => {
             >
               <div>
                 <h2>정보</h2>
-
-                <p>위치: {resultValue}</p>
+                <p>{resultData}</p>
+                <a href={"https://www.google.com/maps/search/"+resultData}>
+                  <button>정보 보기</button>
+                </a>
+                {/* <button onClick={findStreet}>길찾기</button> */}
                 
-                
-
-                <p>위치: {searchPlace}</p>
               </div>
             </InfoWindow>) : null}
           </GoogleMap>
