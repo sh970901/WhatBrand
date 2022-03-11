@@ -7,6 +7,8 @@ import "@reach/combobox/styles.css";
 import "../App.css"
 import title_logo from '../image/title_logo.png'
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
+import TodoModal from './TodoModal';
+
 
 const Map = () => {
   
@@ -40,6 +42,18 @@ const Map = () => {
   const [resultData, setResultData] = useState("");
   const [count, setCount] = useState()
   const [isShow, setIsShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  // const [ismodal, setIsModal] = useState(false);
+ function openModal(){
+   console.log("모달표시")
+   setShowModal(true)
+   console.log(showModal)
+ }
+ function closeModal(){
+   console.log("모달끄기")
+   setShowModal(false)
+ }
+
 
   const showMarker = useCallback(() => {
     setMarkers(current => [
@@ -68,16 +82,19 @@ const Map = () => {
   useEffect(()=>{
 
   },[count])
-
-
+  
+  
   if (loadError) return "Error Loading maps";
   if (!isLoaded) return "Loading Maps";
 
   return (
     <>
     <div>
+    
       <br />
-      <h3 className='title'>ㅤ<img src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>브랜드를 찾아줘</h3>
+      <h3 className='title'>ㅤ<img onClick={openModal} src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>브랜드를 찾아줘</h3>
+      {showModal ? <TodoModal openModal={openModal} closeModal={closeModal}></TodoModal> : null}
+      
 
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue} setCount={setCount} setIsShow={setIsShow}></Predict_img>
