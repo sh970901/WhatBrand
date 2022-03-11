@@ -73,23 +73,11 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
         <>
             <div className="search">
                 <br />
-                
-                {/* <input className="inputBox1"
-                    type="text" placeholder="Enter an address" onChange={handleLocate} value={value}
-                ></input> */}
                  <input className="resultInputBox"
                     type="text" placeholder="Enter an address" onChange={handleLocate} value={value}
                 ></input>
                 <br />
-                {/* <div className='view'>
-                    <button className="btn btn-primary" id="btn_location" onClick={searchMap} >위치보기</button>
-                </div> */}
-                {/* <input className="inputBox"
-                    type="text" placeholder="Enter an address" onChange={handleLocate} value={text}
-                ></input><br/>
-                <button onClick={showLocate}>위치보기</button> */}
             </div>
-            <button onClick={()=>console.log(resultValue)}>확인</button>
 
             {resultValue===0 || resultValue===1 ? null : <><button className='showDataBtn' onClick={showData}>관련 데이터 보기</button>
                     
@@ -103,71 +91,3 @@ const Search = ({ panTo, place, getPlace, getSearchPlace, resultValue, setResult
     )
 }
 export default Search
-
-
-    // function searchMap() {
-    //     if (resultValue === 0) {
-    //         alert("사진을 로딩중입니다.")
-    //     }
-    //     else if (resultValue === 1) {
-    //         alert("사진을 업로드 해야합니다.")
-    //     }
-    //     else {
-    //         getSearchPlace(resultValue)
-    //         try {
-    //             clearSuggestions();
-    //             Geocode.fromAddress(resultValue)
-    //                 .then((res) => {
-    //                     navigator.geolocation.getCurrentPosition(
-    //                         (position) => {
-    //                             const { lat, lng } = res.results[0].geometry.location;
-    //                             getPlace({ lat, lng })
-    //                             panTo({ lat, lng })
-    //                         }
-    //                     )
-    //                 }
-    //                 )
-    //         } catch (error) {
-    //             alert("정확하지 않은 주소입니다.")
-    //         }
-    //     }
-    // }
-
-//     < Combobox
-// onSelect = { async(address) => {
-//     setValue(address, false);
-//     clearSuggestions();
-//     try {
-//         const results = await getGeocode({ address });
-//         const { lat, lng } = await getLatLng(results[0])
-//         getPlace({ lat, lng })
-//         panTo({ lat, lng })
-//     } catch (error) {
-//         console.log("error!")
-//     }
-// }}
-// onChange = {(e) => {
-//     setValue(e.target.value)
-// }
-//                 }
-//             >
-//     <ComboboxInput
-//         value={value}
-//         onChange={(e) => {
-//             setValue(e.target.value);
-//         }}
-//         disabled={!ready}
-//         placeholder="Enter an address"
-
-//     ></ComboboxInput>
-// {/* <ComboboxPopover> */ }
-// {/* <ComboboxList> */ }
-// {
-//     status === "OK" &&
-//     data.map(({ description }) => (
-//         <ComboboxOption key={description} value={description} />
-//     ))
-// }
-// {/* </ComboboxList> */ }
-// {/* </ComboboxPopover> */ }
-//             </Combobox >
