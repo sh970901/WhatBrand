@@ -9,6 +9,7 @@ import title_logo from '../image/title_logo.png'
 import light from '../image/light.png'
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 import TodoModal from './TodoModal';
+import SearchResult from './SearchResult';
 
 const Map = () => {
   
@@ -90,7 +91,11 @@ const Map = () => {
     <div>
       <br />
       <h3 className='title'>ㅤ<img onClick={openModal} src={title_logo} style={{width:"30px", height:"30px", marginRight:"10px",marginTop : "-10px" }}/>브랜드를 찾아줘</h3>
-      {showModal ? <TodoModal openModal={openModal} closeModal={closeModal}></TodoModal> : null}
+      {showModal ? <TodoModal openModal={openModal} closeModal={closeModal}></TodoModal> : null}<br/>
+      <p className='how'>ㅤㅤㅤㅤㅤㅤ돋보기를 누르면 사용법이 나와요!</p>
+      <br/>
+      <SearchResult></SearchResult>
+
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue} setCount={setCount} setIsShow={setIsShow}></Predict_img>
       <Search panTo={panTo} place={place} getPlace={getPlace} getSearchPlace={getSearchPlace} resultValue={resultValue} setResultData={setResultData} isShow={isShow} setIsShow={setIsShow}/>

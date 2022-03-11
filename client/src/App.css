@@ -201,6 +201,14 @@ body
      display: contents;
    }
 
+   .how{
+    color: #d39162; 
+    font-size:8px; 
+    margin-top:-45px;
+    font-family : 'Jua', sans-serif;
+    margin-left: 25px;
+   }
+
    .inforWindow
    {
      font-family: 'Jua', sans-serif;
