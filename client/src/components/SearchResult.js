@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import prize from '../image/prize.png'
 
 const SearchResult = () => {
     const [bestBrand, setBestBrand] = useState()
@@ -23,10 +24,8 @@ const SearchResult = () => {
         
     },[])
   return (
-    <div>
-        <p>가장 많이 선택된 브랜드</p>
-                <p>{bestBrand}</p>
-        <p>조회수: {bestCount}</p>
+    <div className='searchResult'>
+        <a> <img style={{width:"17px", height:"17px", marginRight:"4px",marginTop : "-4px" }} src={prize}/> 가장 핫한 브랜드 : <span style={{color:"red"}}>" {bestBrand} " </span>ㅤ검색 횟수: {bestCount}</a>
     </div>
   )
 }
