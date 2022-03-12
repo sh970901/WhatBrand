@@ -1,7 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 const cors = require('cors')
 const mysql = require('mysql');
 const fs = require('fs');
