@@ -9,8 +9,6 @@ const Locate = ({ panTo, place, getPlace }) => {
                 const myLat = position.coords.latitude
                 const myLng = position.coords.longitude
                 getPlace({ myLat, myLng })
-                console.log(place)
-                console.log({ myLat, myLng })
                 panTo({ lat: myLat, lng: myLng })
             }
         )
@@ -18,7 +16,6 @@ const Locate = ({ panTo, place, getPlace }) => {
     return (
         <div>
             <button className="locate" onClick={myLocate}>
-                {/* <img src="./compass.svg" alt="" /> */}
             </button>
         </div>
     )

@@ -10,7 +10,7 @@ import light from '../image/light.png'
 import { GoogleMap, useLoadScript, Marker, InfoWindow, } from "@react-google-maps/api";
 import TodoModal from './TodoModal';
 import SearchResult from './SearchResult';
-import Chart from './Chart';
+
 
 const Map = () => {
   
@@ -98,8 +98,7 @@ const Map = () => {
       <p className='how'>ㅤㅤㅤㅤㅤㅤ돋보기를 누르면 사용법이 나와요!</p>
       <br/>
       <SearchResult></SearchResult>
-      {/* <Chart></Chart>
-       */}
+  
 
       <div className='btn_group'>
       <Predict_img setResultValue={setResultValue} setCount={setCount} setIsShow={setIsShow}></Predict_img>

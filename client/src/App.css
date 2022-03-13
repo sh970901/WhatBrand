@@ -186,8 +186,8 @@ body
   
   #googlemap-streetview
   {
-    width: 300px; 
-    height: 300px;
+    width: 500px; 
+    height: 500px;
     border: 0.1em solid #d1a788;
     border-radius: 30px;
     display:inline-block;
