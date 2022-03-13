@@ -21,7 +21,6 @@ const SearchResult = () => {
             }
             }
         )
-        
     },[])
   return (
     <div className='searchResult'>
