@@ -17,7 +17,6 @@ const Data = (props) => {
     }
     return (
         <>
-            {/* <div onClick={goLoate}>{props.value}</div> */}<br/>
             <button className="resultList" onClick={goLocate}>{props.value}</button>
 
         </>
