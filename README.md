@@ -9,3 +9,4 @@ Google Megazone 출품작
 • 브랜드 사진 Crawling</br></br>
 • Teachable Machine를 활용한 머신러닝</br></br>
 </p>
+https://www.youtube.com/watch?v=ZwyrESE1lyQ
