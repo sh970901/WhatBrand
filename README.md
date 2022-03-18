@@ -5,7 +5,7 @@ Google Megazone 출품작
 • React를 활용한 클라이언트 개발 </br></br>
 • Node.js express 서버 측 구현 </br></br>
 • Mysql 핫한 브랜드 정보 및 조회 수 </br></br>
-• GoogleMap </br></br>
-• Crawling</br></br>
-• Teachable Machine</br></br>
+• GoogleMap 사용 </br></br>
+• 브랜드 사진 Crawling</br></br>
+• Teachable Machine를 활용한 머신러닝</br></br>
 </p>
